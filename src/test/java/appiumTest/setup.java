@@ -12,35 +12,41 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 
 
 public class setup {
 	WebDriver driver;
+//	AndroidDriver<MobileElement> driver;
 //	AppiumDriver<MobileElement> driver;
 	
 	@Before
 	public void setupAppium() throws MalformedURLException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 
-		cap.setCapability("deviceName", "emulator-5554");
+
 		cap.setCapability("platformName", "Android");
+		cap.setCapability("deviceName", "emulator-5554");
+		cap.setCapability("browserName", "chrome");
+		cap.setCapability("chromedriverExecutable","C:\\drivers\\ChromeDriver\\74.0.3729.6\\chromedriver.exe");
 		cap.setCapability("noReset", true);
 //		cap.setCapability("app","C:\\apk\\OrangeHRM Advanced_4194504_Apkpure.apk");
 		cap.setCapability("noSign", true);
 		cap.setCapability("autoGrantPermissions", true);
-		URL url  = new URL("http://127.0.0.1:4723/wd/hub");
-		driver= new RemoteWebDriver (url, cap);
+//		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+//		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+		driver= new RemoteWebDriver (new URL("http://127.0.0.1:4723/wd/hub"), cap);
 //		driver= new AppiumDriver<MobileElement> (url, cap);
-//		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		
 	}
 
 	@Test
 	public void testCall() throws InterruptedException {
-		boolean resultado = true;
-		metodos met = new metodos();
-		resultado= met.clickChrome(driver);
+//		boolean resultado = true;
+//		metodos met = new metodos();
+//		resultado= met.clickChrome(driver);
 	}
 
 }
