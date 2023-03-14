@@ -31,7 +31,6 @@ public class setup {
 		cap.setCapability("browserName", "chrome");
 		cap.setCapability("chromedriverExecutable","C:\\drivers\\ChromeDriver\\74.0.3729.6\\chromedriver.exe");
 		cap.setCapability("noReset", true);
-//		cap.setCapability("app","C:\\apk\\OrangeHRM Advanced_4194504_Apkpure.apk");
 		cap.setCapability("noSign", true);
 		cap.setCapability("autoGrantPermissions", true);
 //		URL url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -44,9 +43,16 @@ public class setup {
 
 	@Test
 	public void testCall() throws InterruptedException {
-//		boolean resultado = true;
-//		metodos met = new metodos();
-//		resultado= met.clickChrome(driver);
+		boolean resultado = true;
+		metodos met = new metodos();
+
+		resultado = met.loginUsuario(driver, "Admin");
+		if(resultado) {
+			resultado = met.loginPassword(driver, "admin123");
+			if(resultado) {
+				resultado= met.clickBtn_login(driver);
+			}
+		}
 	}
 
 }
